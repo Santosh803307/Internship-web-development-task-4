@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- 5. What is viewport meta tag? 
+       This meta tag controls the layout on mobile browsers by setting the viewport width 
+       to the device width and initial scale to 1.0. It's essential for responsive design. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Task 4: Mobile-Friendly Website | Media Queries Demo</title>
+  <style>
+    /* ========== BASE STYLES (Desktop First Approach, then media queries adjust for mobile) ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      background: #f5f7fc;
+      color: #1e2a3e;
+      padding: 20px;
+    }
+
+    /* Main container - typical desktop layout: max width, centered */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 2rem;
+    }
+
+    /* ========== NAVIGATION (Desktop: horizontal row, spaced) ========== */
+    .nav-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0f2b3d;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #ffd966;
+      letter-spacing: -0.5px;
+      background: #1e3a4d;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      transition: 0.2s;
+      border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+      border-bottom-color: #ffd966;
+      color: #ffd966;
+    }
+
+    /* ========== HERO SECTION (Fixed width elements demonstration) ========== */
+    .hero {
+      background: linear-gradient(135deg, #1e4b6e, #0f2b3d);
+      color: white;
+      padding: 3rem;
+      border-radius: 32px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    /* large image - will be flexible with max-width */
+    .hero-image {
+      max-width: 100%;
+      height: auto;
+      margin-top: 1.5rem;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* ========== TWO COLUMN LAYOUT (Desktop: side-by-side) ========== */
+    .columns {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 1.8rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      border: 1px solid #e9edf2;
+      flex: 1;
+      transition: transform 0.2s;
+    }
+
+    .card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #0f2b3d;
+    }
+
+    .card p {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    /* large fixed-width element demo (desktop: 400px image, but on mobile it will shrink) */
+    .fixed-width-demo {
+      width: 100%;
+      max-width: 400px;  /* originally fixed max width but responsive */
+      background: #eef2f7;
+      padding: 1rem;
+      border-radius: 24px;
+      margin: 1rem auto;
+      text-align: center;
+    }
+
+    .fixed-width-demo img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* image gallery (flex row -> stacks on mobile) */
+    .gallery {
+      display: flex;
+      gap: 1.5rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .gallery-item {
+      flex: 1;
+      min-width: 180px;
+      background: #f8fafc;
+      border-radius: 20px;
+      overflow: hidden;
+      text-align: center;
+      padding: 1rem;
+      border: 1px solid #dee4ec;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+    }
+
+    /* footer */
+    .footer {
+      background: #0f2b3d;
+      color: #cddfe7;
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 28px;
+      margin-top: 2rem;
+    }
+
+    
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 12px;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+      
+      /* 5. NAV MENU COLLAPSE / STACK VERTICALLY */
+      .nav-menu {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        border-radius: 32px;
+        padding: 1rem;
+      }
+      
+      .nav-links {
+        flex-direction: column;
+        gap: 0.8rem;
+        width: 100%;
+      }
+      
+      .nav-links li {
+        width: 100%;
+      }
+      
+      .nav-links a {
+        display: block;
+        padding: 0.6rem;
+        background: #1e3a4d;
+        border-radius: 60px;
+      }
+      
+      /* 4. Reduce font sizes for better readability on small viewports */
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      
+      .hero {
+        padding: 1.8rem;
+      }
+      
+      .card h3 {
+        font-size: 1.5rem;
+      }
+      
+      .logo {
+        font-size: 1.4rem;
+      }
+      
+      /* 4. STACK COLUMNS VERTICALLY */
+      .columns {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      /* Ensure cards use full width when stacked */
+      .card {
+        width: 100%;
+      }
+      
+      /* gallery items stack more gracefully */
+      .gallery {
+        flex-direction: column;
+      }
+      
+      .gallery-item {
+        width: 100%;
+      }
+      
+      /* Fixed width demo element: becomes flexible, no overflow */
+      .fixed-width-demo {
+        max-width: 100%;
+      }
+      
+      /* fix potential overflow for any large elements */
+      img, iframe, video, .hero-image {
+        max-width: 100%;
+        height: auto;
+      }
+      
+      /* 7. Fix overflow issues - ensure any unexpected content scrolls gracefully */
+      body, .container, .card, .hero {
+        overflow-x: hidden;
+      }
+      
+      /* additional polish: reduce spacing */
+      .footer {
+        font-size: 0.9rem;
+      }
+      
+      .card p {
+        font-size: 0.95rem;
+      }
+    }
+    
+    /* Extra small devices (optional fine-tune for <=480px) */
+    @media screen and (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      
+      .container {
+        padding: 0.8rem;
+      }
+      
+      .card {
+        padding: 1.2rem;
+      }
+    }
+    
+    /* Utility to show responsive info for demo */
+    .responsive-badge {
+      text-align: center;
+      background: #eef2ff;
+      border-radius: 40px;
+      padding: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #155a8a;
+    }
+    
+    .responsive-badge::before {
+      content: "🖥️ Desktop view | ";
+    }
+    
+    @media (max-width: 768px) {
+      .responsive-badge::before {
+        content: "📱 Mobile view (≤768px) | Stacked layout, nav collapsed | ";
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Responsive indicator badge (just for showing active mode) -->
+  <div class="responsive-badge">
+    🔍 Resize window or use Chrome DevTools device toolbar → columns stack, menu vertical, fonts scale.
+  </div>
+  
+  <!-- 5. Nav menu (horizontal on desktop, collapses/stack vertically on mobile) -->
+  <nav class="nav-menu">
+    <div class="logo">🌊 Responsive Wave</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Solutions</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Blog</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Hero section with large image and text -->
+  <div class="hero">
+    <h1>Mobile-Friendly Design<br>with CSS Media Queries</h1>
+  
+    <!-- Large image that scales within container (point 8) -->
+    <img class="hero-image" src="https://c4.wallpaperflare.com/wallpaper/378/229/123/tiger-4k-for-desktop-background-wallpaper-preview.jpg" alt="Responsive demo landscape" 
+         style="width:100%; max-width:900px; height:auto; border-radius:24px;">
+    <p style="margin-top: 12px; font-size:0.9rem;">✨</p>
+  </div>
+  
+  <!-- 4. Two column layout: on desktop side by side, on mobile (<=768px) vertical stacking -->
+  <div class="columns">
+    <div class="card">
+      <h3>📱 Media Queries</h3>
+      <p>Media queries allow us to apply CSS based on device characteristics like viewport width. Here, when max-width ≤ 768px, we change layout: columns stack, menu becomes vertical, font sizes shrink, and everything adapts.</p>
+    </div>
+    <div class="card">
+      <h3>🧩 Stack Columns Vertically</h3>
+      <p>Using <code>flex-direction: column</code> inside media query, we transform the .columns wrapper from row to column. Each card takes full width, perfect for mobile reading.</p>
+    </div>
+    <div class="card">
+      <h3>📐 Flexible Units & Images</h3>
+      <p>All images use <code>max-width:100%; height:auto;</code> → they never overflow. Relative units like rem, %, vw make layout fluid. No horizontal scroll on mobile!</p>
+    </div>
+  </div>
+  
+  <!-- Example: Fixed width elements identification (Hint #2) + handling overflow -->
+  <div style="margin: 2rem 0;">
+    <h2 style="margin-bottom: 1rem;">📸 Fixed-Width Elements Demo (now fully responsive)</h2>
+    <div class="fixed-width-demo">
+      <img src="https://picsum.photos/id/20/400/250" alt="demo fixed width image" style="width:100%; border-radius: 20px;">
+      <p>Books</p>
+    </div>
+  </div>
+  
+  <!-- Image gallery: flex row -> on mobile automatically wraps or stack due to media query flex-direction column -->
+  <h2>🖼️ Responsive Gallery (Stack on mobile)</h2>
+  <div class="gallery">
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/1015/300/200" alt="mountain">
+      <p>Mountain view</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/169/300/200" alt="sunset">
+      <p>Sunset horizon</p>
+    </div>
+    <div class="gallery-item">
+      <img src="https://picsum.photos/id/155/300/200" alt="city">
+      <p>Urban cityscape</p>
+    </div>
+  </div>
+  
+  
